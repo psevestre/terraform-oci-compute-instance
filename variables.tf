@@ -66,8 +66,14 @@ variable "subnet_ocids" {
 }
 
 variable "ssh_authorized_keys" {
-  description = "Public SSH keys path to be included in the ~/.ssh/authorized_keys file for the default user on the instance. "
+  description = <<EOF
+Public SSH keys or path to be included in the ~/.ssh/authorized_keys file for the default user on the instance.
+The module will first try to load the contents of a file corresponding to this value. If this fails, it assumes
+the value of this variable is the content itself.
+EOF
 }
+
+
 
 variable "user_data" {
   description = "Provide your own base64-encoded data to be used by Cloud-Init to run custom scripts or provide custom Cloud-Init configuration. "
